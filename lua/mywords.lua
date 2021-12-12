@@ -53,7 +53,7 @@ local function highlight_word(word)
         local color = find_avail_color()
         if color ~=nil then
             -- ctermbg=Blue 
-            cmd(string.format('highlight %s guibg=%s', hl_group, color))
+            cmd(string.format('highlight %s guibg=%s guifg=Black', hl_group, color))
             local id = fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11)
 
             group_word_color_mapping[hl_group] = {word, color}
