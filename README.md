@@ -3,6 +3,7 @@ Highlight words with different colors in neovim. When all the configured colors 
 will be cleared automatically and used for the next new highlight, you don't have to clear old highlights that 
 you don't care anymore.
 
+![mywords-nvim-demo](https://i.ibb.co/gvk66DM/mywords-nvim-demo.gif)
 
 ## How to install
 
