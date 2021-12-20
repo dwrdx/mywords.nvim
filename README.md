@@ -21,3 +21,9 @@ Plug 'dwrdx/mywords.nvim'
 | \<leader\>m | Toggle highlight of the word under cursor|
 | \<leader\>c | Clear all highlights|
 
+
+or configuire your own key mappings in init.vim
+``` 
+map <silent> <leader>m :lua require'mywords'.hl_toggle()<CR>
+map <silent> <leader>c :lua require'mywords'.uhl_all()<CR>
+```
