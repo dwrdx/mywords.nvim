@@ -54,7 +54,13 @@ local function highlight_word(word)
         if color ~=nil then
             -- ctermbg=Blue 
             cmd(string.format('highlight %s guibg=%s guifg=Black', hl_group, color))
-            local id = fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11)
+
+            local win_totalnum = fn.winnr('$')
+
+            for i=1, win_totalnum do
+                local win_id = fn.win_getid(i)
+                local id = fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11, -1, { window=win_id})
+            end
 
             group_word_color_mapping[hl_group] = {word, color}
             table.insert(group_fifo, hl_group)
