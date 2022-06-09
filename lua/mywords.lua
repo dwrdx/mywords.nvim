@@ -88,20 +88,6 @@ local function hl_toggle()
     highlight_word(word)
 end
 
--- helper to create key mapping
-local function key_mapping_helper(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
-
-
-key_mapping_helper("n", "<leader>m", ":lua require'mywords'.hl_toggle()<CR>", { silent = true })
-key_mapping_helper("n", "<leader>c", ":lua require'mywords'.uhl_all()<CR>",   { silent = true })
-
-
 return {
   hl_toggle = hl_toggle,
   uhl_all = uhl_all 

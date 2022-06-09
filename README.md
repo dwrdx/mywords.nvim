@@ -16,13 +16,8 @@ Plug 'dwrdx/mywords.nvim'
 
 ## How to use
 
-|Key Mapping|Function|
-|-----------|--------|
-| \<leader\>m | Toggle highlight of the word under cursor|
-| \<leader\>c | Clear all highlights|
+configuire your own key mappings in init.vim
 
-
-or configuire your own key mappings in init.vim
 ``` 
 map <silent> <leader>m :lua require'mywords'.hl_toggle()<CR>
 map <silent> <leader>c :lua require'mywords'.uhl_all()<CR>
