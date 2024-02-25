@@ -1,4 +1,8 @@
 # mywords.nvim
+<a href="https://dotfyle.com/plugins/dwrdx/mywords.nvim">
+	<img src="https://dotfyle.com/plugins/dwrdx/mywords.nvim/shield?style=flat" />
+</a>
+
 Highlight words with different colors in neovim. When all the configured colors has been used, the first highlight 
 will be cleared automatically and used for the next new highlight, you don't have to clear old highlights that 
 you don't care anymore.
