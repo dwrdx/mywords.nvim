@@ -7,6 +7,32 @@ local group_word_color_mapping = {}
 local group_fifo = {}
 local avail_colors = colors
 
+local bit = require('bit')
+
+-- convert regex expression to a valid highlight group name suffix
+local function regex_to_varname(regex)
+    -- Clean the string by keeping only alphanumeric characters and underscores
+    local clean = regex:gsub("[^%w_]", "")
+  
+    -- Calculate a hash value for the original regular expression
+    local hash = 0
+    for i = 1, #regex do
+        local c = string.byte(regex, i)
+        hash = bit.bxor(bit.lshift(hash, 5), hash) + c
+        hash = bit.band(hash, 0x7FFFFFFF)  -- prvent negative value
+    end
+  
+    -- If the cleaned string starts with a digit, prepend 'var' to make it a valid identifier
+    if clean:match("^%d") then
+        clean = "var" .. clean
+    end
+  
+    -- Append the hash value as a suffix to ensure uniqueness
+    local varname = clean .. "_" .. tostring(hash)
+
+    return varname
+end
+
 -- clear highlight group to clear highlight of the word
 local function unhighlight_group(group)
     -- unhighlight
@@ -45,7 +71,7 @@ end
 
 -- toggle the highlight status of the given word
 local function highlight_word(word)
-    local hl_group = 'mywords_'..word
+    local hl_group = 'mywords_'..regex_to_varname(word)
 
     if group_word_color_mapping[hl_group] ~= nil then
         unhighlight_group(hl_group)
@@ -88,7 +114,14 @@ local function hl_toggle()
     highlight_word(word)
 end
 
+-- toggle the haghlight of given regex expression
+local function hl_toggle_regex()
+    local user_input = vim.fn.input("Input Regex: ")
+    highlight_word(user_input)
+end
+
 return {
   hl_toggle = hl_toggle,
+  hl_toggle_regex = hl_toggle_regex,
   uhl_all = uhl_all 
 }
