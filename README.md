@@ -24,5 +24,6 @@ configuire your own key mappings in init.vim
 
 ``` 
 map <silent> <leader>m :lua require'mywords'.hl_toggle()<CR>
+map <silent> <leader>r :lua require'mywords'.hl_toggle_regex()<CR>
 map <silent> <leader>c :lua require'mywords'.uhl_all()<CR>
 ```
