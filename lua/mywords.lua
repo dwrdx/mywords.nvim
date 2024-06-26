@@ -85,7 +85,7 @@ local function highlight_word(word)
 
             for i=1, win_totalnum do
                 local win_id = fn.win_getid(i)
-                local id = fn.matchadd(hl_group, string.format([[\<%s\>]], word), 11, -1, { window=win_id})
+                local id = fn.matchadd(hl_group, word, 11, -1, { window=win_id})
             end
 
             group_word_color_mapping[hl_group] = {word, color}
@@ -111,7 +111,7 @@ end
 -- toggle the highlight of current word
 local function hl_toggle()
     local word = fn.expand('<cword>')
-    highlight_word(word)
+    highlight_word(string.format([[\<%s\>]], word))
 end
 
 -- toggle the haghlight of given regex expression
