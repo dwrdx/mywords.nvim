@@ -33,6 +33,14 @@ local function regex_to_varname(regex)
     return varname
 end
 
+-- get visual selection
+local function get_visual_selection()
+    -- local visual_selection = table.concat(vim.fn.getregion(vim.fn.getpos("v"), vim.fn.getpos(".")), "\n")
+    vim.cmd('normal! "ay')
+    local visual_selection = vim.fn.escape(vim.fn.getreg('a'), ' ')
+    return visual_selection
+end
+
 -- clear highlight group to clear highlight of the word
 local function unhighlight_group(group)
     -- unhighlight
@@ -120,8 +128,15 @@ local function hl_toggle_regex()
     highlight_word(user_input)
 end
 
+-- toggle the highlight of current selection
+local function hl_toggle_visual()
+    local selection = get_visual_selection()
+    highlight_word(selection)
+end
+
 return {
   hl_toggle = hl_toggle,
   hl_toggle_regex = hl_toggle_regex,
+  hl_toggle_visual = hl_toggle_visual,
   uhl_all = uhl_all 
 }
